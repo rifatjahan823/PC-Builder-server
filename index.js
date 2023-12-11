@@ -29,6 +29,11 @@ const run = async () => {
         const products = await cursor.toArray();
         res.send({ products });
       });
+      app.get('/category/:id', async (req, res) => {
+        const id = req.params.id;
+        const  products = await productCollection.findOne({ _id:new ObjectId(id) });
+        res.send( products);
+      });
       
     } finally {
       // Make sure to close the connection when done
